@@ -1,0 +1,195 @@
+/* Colour and font variables: neutrals plus one accent */
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --text: #1b1f2a;
+  --muted: #454c5c;
+  --line: #d6d3ca;
+  --accent: #1d5c63;
+  --accent-hover: #123f45;
+  --font-head: "Fraunces", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+}
+
+/* Base elements: page, headings, text, links */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1rem/1.65 var(--font-body);
+}
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.2;
+  margin: 40px 0 8px;
+}
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.2rem; margin-top: 24px; }
+p, li { max-width: 68ch; }
+p { margin: 0 0 8px; }
+ul { padding-left: 24px; margin: 8px 0 0; }
+li { margin-bottom: 8px; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Navigation bar (flexbox) */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 8px 32px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 8px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--accent); }
+
+/* Buttons: filled for the main action, outlined for the second */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 24px;
+  background: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+.button:hover { background: var(--accent-hover); color: #ffffff; }
+.button-outline { background: transparent; color: var(--accent); }
+.button-outline:hover { background: var(--accent); color: #ffffff; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+
+/* Sections: shared width and spacing */
+section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+section > h2 { margin-top: 0; }
+
+/* Hero: name, one-line profile and contact buttons */
+#hero { padding-top: 64px; }
+#hero h1 {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  margin: 0 0 24px;
+}
+.lead { font-size: 1.25rem; }
+
+/* Cards (grid): flat, one outline, no shadow */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px;
+}
+.card h3 { margin-top: 0; }
+.meta { color: var(--muted); margin-bottom: 8px; }
+
+/* Skills: a list where each skill has proof */
+.skill-list { list-style: none; padding: 0; }
+.skill-list li { margin-bottom: 8px; }
+
+/* Download link above the paper resume */
+.download {
+  width: calc(100% - 64px);
+  max-width: 794px;
+  margin: 0 auto 8px;
+}
+
+/* Paper resume: white sheet roughly A4 wide */
+#resume {
+  width: calc(100% - 64px);
+  max-width: 794px;
+  margin: 0 auto 40px;
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+#resume h1 { font-size: 1.75rem; margin: 0 0 4px; }
+#resume h2 {
+  font-size: 1.05rem;
+  margin: 24px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+#resume h3 { font-family: var(--font-body); font-size: 1rem; margin: 16px 0 4px; }
+#resume p, #resume li { max-width: none; }
+.contact-line { color: var(--muted); }
+
+/* Contact section */
+#contact { padding-bottom: 64px; }
+
+/* Footer */
+footer {
+  padding: 24px 32px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Screens narrower than 700px */
+@media (max-width: 699px) {
+  .nav { flex-direction: column; align-items: flex-start; padding: 8px 16px; }
+  section { padding: 40px 16px; }
+  #hero { padding-top: 40px; }
+  .download, #resume { width: calc(100% - 32px); }
+  #resume { padding: 24px 16px; }
+  .actions .button { width: 100%; justify-content: center; }
+}
+
+/* Print: only the resume, black on white, one A4 page */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: #ffffff; color: #000000; font-size: 10pt; line-height: 1.4; }
+  header, footer, main > :not(#resume) { display: none; }
+  #resume { width: auto; max-width: none; margin: 0; padding: 0; border: 0; }
+  #resume * { color: #000000; }
+  #resume h1 { font-size: 20pt; }
+  #resume h2 { font-size: 11pt; margin: 10pt 0 4pt; }
+  #resume h3 { font-size: 10pt; margin: 6pt 0 2pt; }
+  #resume a { text-decoration: none; }
+}
+
+/* Turn off transitions for people who ask for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link, .button { transition: none; }
+}
